@@ -1,0 +1,56 @@
+<div class="container mx-auto px-4 py-20 min-h-screen">
+  @if (project(); as p) {
+    <div class="max-w-4xl mx-auto">
+      <button routerLink="/projects" class="btn btn-ghost btn-sm mb-8 gap-2 opacity-60 hover:opacity-100 group transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Projects
+      </button>
+
+      <div class="relative overflow-hidden rounded-3xl bg-base-100 shadow-2xl border border-base-200/50">
+        <div class="h-4 w-full bg-gradient-to-r" [ngClass]="p.gradient"></div>
+        
+        <div class="p-5 sm:p-8 md:p-12">
+          <div class="flex flex-wrap justify-between items-start gap-6 mb-8">
+            <div class="flex-1 min-w-[300px]">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 tracking-tight">{{ p.title }}</h1>
+              <div class="flex items-center gap-3 text-base sm:text-lg opacity-70">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <span>Professional collaboration with <span class="text-primary font-bold">{{ p.company }}</span></span>
+              </div>
+            </div>
+            
+            <div class="flex gap-4">
+              <a [href]="p.githubUrl" target="_blank" class="btn btn-outline rounded-full px-8">GitHub</a>
+              <a [href]="p.liveUrl" target="_blank" class="btn btn-primary rounded-full px-8 shadow-lg shadow-primary/30">Live Demo</a>
+            </div>
+          </div>
+
+          <div class="divider opacity-10"></div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mt-8">
+            <div class="md:col-span-2">
+              <h3 class="text-xl font-bold mb-4">Project Overview</h3>
+              <p class="text-lg opacity-80 leading-relaxed">{{ p.longDescription }}</p>
+              
+              <h3 class="text-xl font-bold mt-8 mb-4">Technologies Used</h3>
+              <div class="flex flex-wrap gap-3">
+                @for (tech of p.technologies; track tech) {
+                  <span class="badge badge-lg badge-ghost py-4 px-6 font-semibold">{{ tech }}</span>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <div class="text-center py-20">
+      <h2 class="text-2xl font-bold opacity-50">Project not found</h2>
+      <button routerLink="/projects" class="btn btn-primary mt-4">Back to Projects</button>
+    </div>
+  }
+</div>

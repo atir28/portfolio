@@ -1,0 +1,5 @@
+:host {
+  display: block;
+  background: radial-gradient(circle at top right, rgba(var(--p), 0.05), transparent 400px),
+              radial-gradient(circle at bottom left, rgba(var(--s), 0.05), transparent 400px);
+}
