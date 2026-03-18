@@ -1,0 +1,52 @@
+<div class="container mx-auto px-4 py-16 max-w-4xl">
+  <div class="mb-8">
+    <a routerLink="/articles" class="btn btn-ghost btn-sm mb-6 opacity-80 hover:opacity-100 hover:-translate-x-1 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+      Back to Articles
+    </a>
+
+    @if (article) {
+      <div class="mb-10 text-center relative">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-[500px] bg-primary/5 rounded-full blur-[80px] -z-10 pointer-events-none"></div>
+        <h1 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">{{ article.title }}</h1>
+        <div class="flex flex-wrap justify-center gap-4 text-sm opacity-80 mb-6 font-medium">
+          <span class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+            {{ article.publishDate }}
+          </span>
+          <span class="flex items-center gap-1">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            {{ article.readTime }}
+          </span>
+        </div>
+        <div class="flex flex-wrap justify-center gap-2">
+          @for (tag of article.tags; track tag) {
+            <span class="badge badge-primary badge-outline font-semibold">{{ tag }}</span>
+          }
+        </div>
+      </div>
+      
+      <div class="divider border-base-300 opacity-50"></div>
+
+      <article class="prose prose-lg md:prose-xl prose-primary prose-headings:font-bold prose-a:text-primary max-w-none mt-10">
+        <markdown [src]="articlePath"></markdown>
+      </article>
+      
+      <div class="mt-20 bg-base-200/50 p-8 rounded-3xl border border-base-300 text-center shadow-inner">
+        <h3 class="font-bold text-2xl mb-2">Enjoyed this article?</h3>
+        <p class="opacity-80 mb-8 max-w-md mx-auto">Let's connect on LinkedIn or check out my other open-source projects on GitHub.</p>
+        <div class="flex justify-center gap-4">
+          <a href="https://linkedin.com" target="_blank" class="btn btn-primary rounded-full px-8 shadow-md hover:shadow-primary/30 transition-shadow">Connect on LinkedIn</a>
+          <a href="https://github.com" target="_blank" class="btn btn-outline rounded-full px-8">Follow on GitHub</a>
+        </div>
+      </div>
+    } @else {
+      <div class="text-center py-20 bg-base-200 rounded-3xl border border-base-300">
+        <div class="text-6xl mb-4">🔍</div>
+        <h2 class="text-3xl font-bold text-error mb-4">Article Not Found</h2>
+        <p class="opacity-80 mb-8 max-w-sm mx-auto">The article you are looking for does not exist, has been removed, or the link is broken.</p>
+        <a routerLink="/articles" class="btn btn-primary rounded-full px-8">Return to Articles</a>
+      </div>
+    }
+  </div>
+</div>

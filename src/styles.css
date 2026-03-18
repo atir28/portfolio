@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(var(--tw-colors-primary), 0.5),
+                 0 0 20px rgba(var(--tw-colors-primary), 0.3),
+                 0 0 30px rgba(var(--tw-colors-primary), 0.1);
+  }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
+@keyframes shooting-star {
+  0% { transform: translateX(0) translateY(0) rotate(45deg) scale(0); opacity: 0; }
+  10% { transform: translateX(-100px) translateY(100px) rotate(45deg) scale(1); opacity: 1; }
+  30% { transform: translateX(-600px) translateY(600px) rotate(45deg) scale(1.5); opacity: 0.8; }
+  100% { transform: translateX(-2000px) translateY(2000px) rotate(45deg) scale(0); opacity: 0; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.star {
+  position: absolute;
+  background-color: white;
+  border-radius: 50%;
+  animation: twinkle 4s infinite ease-in-out;
+  box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.4);
+}
+
+.shooting-star {
+  position: absolute;
+  width: 150px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
+  animation: shooting-star 5s linear infinite;
+  opacity: 0;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* Global Space Background */
+body {
+  background: radial-gradient(ellipse at top center, #1e1b4b 0%, var(--fallback-b1,oklch(var(--b1))) 70%);
+  background-attachment: fixed;
+}
+
